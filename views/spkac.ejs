@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>
+      A simple demo for working with signed public key & challenges &amp; the
+      <em>&lt;keygen&gt;</em> element
+    </p>
+
+    <div>
+      <fieldset class="forms">
+        <div>
+          <h3>Original POST data:</h3>
+          <span id="errors">
+            <ul>
+              <% for (var i in errors) { %>
+                <li>
+                  <%= errors[i] %>
+                </li>
+              <% } %>
+            </ul>
+          </span>
+        </div>
+        <div>
+         <label for="commonName">Server Name:</label>
+            <span id="commonName"><em><%= commonName %></em></span>
+        </div>
+        <div>
+         <label for="emailAddress">Email:</label>
+            <span id="emailAddress"><em><%= emailAddress %></em></span>
+        </div>
+        <div>
+         <label for="countryName">Country:</label>
+            <span id="countryName"><em><%= countryName %></em></span>
+        </div>
+        <div>
+         <label for="stateOrProvinceName">State:</label>
+            <span id="stateOrProvinceName"><em><%= stateOrProvinceName %></em></span>
+        </div>
+        <div>
+          <label for="localityName">City:</label>
+            <span id="localityName"><em><%= localityName %></em></span>
+        </div>
+        <div>
+          <label for="organizationName">Organization:</label>
+            <span id="organizationName"><em><%= organizationName %></em></span>
+        </div>
+        <div>
+          <label for="organizationalUnitName">Department:</label>
+            <span id="organizationalUnitName"><em><%= organizationalUnitName %></em></span>
+        </div>
+        <div>
+        <div>
+          <label for="spki">SPKAC:</label>
+            <span id="spki"><em><pre><%= spkac %></pre></em></span>
+        </div>
+      </fieldset>
+      <br/><br/>
+      <fieldset class="forms">
+        <div>
+          <h3>SPKAC Operations:</h3>
+          <div>
+            <label for="valid">SPKAC Valid: </label>
+              <span id="valid"><em><%= verify %></em></span>
+          </div>
+          <div>
+            <label for="challenge">SPKAC Challenge: </label>
+              <span id="challenge"><em><%= challenge %></em></span>
+          </div>
+          <div>
+            <label for="pubKey">Public Key: </label>
+              <span id="pubKey"><em><pre><%= pubKey %></pre></em></span>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </body>
+</html>

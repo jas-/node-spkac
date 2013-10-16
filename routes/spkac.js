@@ -22,38 +22,17 @@ exports.index = function(req, res){
   for (var i in req.body) {
     if (required.indexOf(req.body[i])) {
       if (!req.body[i]) {
-        errors.push('Missing field: '+i+'<br/>');
+        errors.push('Missing field: '+i);
       }
     }
   }
 
   /* Send errors if they exist */
   if (errors.length > 0) {
-
-    res.send(errors.join(' '));
-    return;
-
+    display(req, res, errors, null, null, null);
   } else {
 
     if (req.body.spkac) {
-      var response = [];
-
-      /* These fields are required for a valid CSR */
-      response.push('<h3>Submitted data</h3>');
-      response.push('<p>These fields can be used during CSR creation</p>');
-
-      response.push('<p>');
-      response.push('Server name: <em>'+req.body.commonName+'</em><br/>');
-      response.push('Email: <em>'+req.body.emailAddress+'</em><br/>');
-      response.push('Country Name: <em>'+req.body.countryName+'</em><br/>');
-      response.push('State or Province Name: <em>'+req.body.stateOrProvinceName+'</em><br/>');
-      response.push('Locality Name: <em>'+req.body.localityName+'</em><br/>');
-      response.push('Organization Name: <em>'+req.body.organizationName+'</em><br/>');
-      response.push('Organizational Unit Name: <em>'+req.body.organizationalUnitName+'</em><br/>');
-      response.push('SPKAC: <pre>'+req.body.spkac+'</pre>');
-      response.push('</p>');
-      response.push('<p>');
-
       /*
        * Convert the SPKAC to a buffer and
        * strip the browsers need for line endings
@@ -61,21 +40,38 @@ exports.index = function(req, res){
       var spkac = new Buffer(stripLineEndings(req.body.spkac), 'utf-8');
 
       /* Test validity of SPKAC */
-      response.push('SPKAC valid: <em>'+spki.verifySpkac(spkac)+'</em><br/>');
+      var valid = spki.verifySpkac(spkac);
 
       /* Export challenge associated with SPKAC */
-      response.push('SPKAC Challenge: <em>'+spki.exportChallenge(spkac).toString('utf-8')+'</em><br/>');
+      var challenge = spki.exportChallenge(spkac).toString('utf-8');
 
       /* Export public key associated with SPKAC */
-      response.push('SPKAC Public Key: <pre>'+spki.exportPublicKey(spkac).toString('utf-8')+'</pre><br/>');
+      var pubKey = spki.exportPublicKey(spkac).toString('utf-8');
 
-      response.push('</p>');
-      res.send(response.join(' '));
+      display(req, res, null, valid, challenge, pubKey);
     } else {
-      res.send('A SPKAC was not found in POST request');
+      display(req, res, ['A SPKAC was not found in POST request'], null, null, null);
     }
   }
 };
+
+function display(req, res, errors, verify, challenge, pubKey) {
+  res.render('spkac', {
+    title: 'SPKAC w/ node.js',
+    errors: errors,
+    commonName: req.body.commonName,
+    emailAddress: req.body.emailAddress,
+    countryName: req.body.countryName,
+    stateOrProvinceName: req.body.stateOrProvinceName,
+    localityName: req.body.localityName,
+    organizationName: req.body.organizationName,
+    organizationalUnitName: req.body.organizationalUnitName,
+    spkac: req.body.spkac,
+    verify: verify,
+    challenge: challenge,
+    pubKey: pubKey
+  });
+}
 
 function stripLineEndings(obj) {
   return obj.replace(/(\r\n|\n|\r)/gm, '');

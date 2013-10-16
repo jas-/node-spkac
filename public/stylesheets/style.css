@@ -6,7 +6,7 @@ a {
   color: #00b7ff;
 }
 .forms label,
-.forms input {
+.forms input .forms span {
   display: inline-block;
 }
 .forms label {
