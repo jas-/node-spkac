@@ -2,6 +2,28 @@
 Example application for working with SPKAC (signed public key & challege)
 data coming from the ```<keygen>``` element.
 
+## SPKAC history ##
+The SPKAC is an acryonym for signed public key & challenge. It can be used with the [keygen](http://www.w3schools.com/html5/tag_keygen.asp) element because I have not seen much about it elsewhere. Here is what I came up with...</p>
+
+1. It is not new to the <a href="http://dev.w3.org/html5/markup/keygen.html" target="_blank" class="external">HTML5 spec</a> (it was originally developed and implemented in the [w3c spec for HTML4 in 1997](http://www.w3.org/Press/HTML4-REC) specifically by and for [Netscape](http://en.wikipedia.org/wiki/Netscape).
+2. It does not perform public key authentication but is intended for certificate authentication, although certificate authentication does perform a type of public key encryption
+3. It creates what is called a [SPKAC](http://en.wikipedia.org/wiki/Spkac) token which is an encoded version of a newly created [public key](http://en.wikipedia.org/wiki/Public-key_cryptography) corresponding to the local machines [private key](http://searchsecurity.techtarget.com/definition/private-key).
+4. The [SPKAC](http://en.wikipedia.org/wiki/Spkac) created with the ```<keygen>``` tag sent by the browser can be used to create [certificate signing request](http://en.wikipedia.org/wiki/Certificate_signing_request) w/ [challenge](http://en.wikipedia.org/wiki/Challenge-response_authentication) that helps to verify the public key that is sent to the server.
+5. Most implementations of authenticated web sites do not implement this feature as the keygen option is scarce in documentation and working examples of use.</li>
+
+## References ##
+1. http://www.openssl.org/docs/apps/spkac.html
+2. http://lists.whatwg.org/pipermail/whatwg-whatwg.org/attachments/20080714/07ea5534/attachment.txt
+3. http://support.microsoft.com/kb/190282
+4. http://wp.netscape.com/eng/security/comm4-keygen.html
+5. http://wp.netscape.com/eng/security/ca-interface.html
+6. http://webdesign.about.com/od/htmltags/p/bltags_keygen.htm
+7. http://eskimonorth.com/~bloo/indexdot/html/tagpages/k/keygen.htm
+8. http://web.archive.org/web/20040710102131/devedge.netscape.com/library/manuals/1998/htmlguide/
+9. http://64.233.183.104/search?q=cache:TExfCslqOcwJ:www.html4newbies.com/Keygen.php
+10. http://www.di.unito.it/~rabser/ssleay/x509_netscape.html
+11. http://msdn.microsoft.com/en-us/library/cc214558.aspx
+
 ## CLI Test case ##
 ```js
 var spkac = {
