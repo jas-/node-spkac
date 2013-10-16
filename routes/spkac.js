@@ -38,6 +38,22 @@ exports.index = function(req, res){
     if (req.body.spkac) {
       var response = [];
 
+      /* These fields are required for a valid CSR */
+      response.push('<h3>Submitted data</h3>');
+      response.push('<p>These fields can be used during CSR creation</p>');
+
+      response.push('<p>');
+      response.push('Server name: <em>'+req.body.commonName+'</em><br/>');
+      response.push('Email: <em>'+req.body.emailAddress+'</em><br/>');
+      response.push('Country Name: <em>'+req.body.countryName+'</em><br/>');
+      response.push('State or Province Name: <em>'+req.body.stateOrProvinceName+'</em><br/>');
+      response.push('Locality Name: <em>'+req.body.localityName+'</em><br/>');
+      response.push('Organization Name: <em>'+req.body.organizationName+'</em><br/>');
+      response.push('Organizational Unit Name: <em>'+req.body.organizationalUnitName+'</em><br/>');
+      response.push('SPKAC: <pre>'+req.body.spkac+'</pre>');
+      response.push('</p>');
+      response.push('<p>');
+
       /*
        * Convert the SPKAC to a buffer and
        * strip the browsers need for line endings
@@ -53,6 +69,7 @@ exports.index = function(req, res){
       /* Export public key associated with SPKAC */
       response.push('SPKAC Public Key: <pre>'+spki.exportPublicKey(spkac).toString('utf-8')+'</pre><br/>');
 
+      response.push('</p>');
       res.send(response.join(' '));
     } else {
       res.send('A SPKAC was not found in POST request');
