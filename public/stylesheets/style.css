@@ -5,3 +5,11 @@ body {
 a {
   color: #00b7ff;
 }
+.forms label,
+.forms input {
+  display: inline-block;
+}
+.forms label {
+  text-align: right;
+  width: 150px;
+}
