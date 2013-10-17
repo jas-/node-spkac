@@ -9,20 +9,17 @@ The SPKAC is an acryonym for signed public key & challenge. It can be used with 
 2. It does not perform public key authentication but is intended for certificate authentication, although certificate authentication does perform a type of public key encryption
 3. It creates what is called a [SPKAC](http://en.wikipedia.org/wiki/Spkac) token which is an encoded version of a newly created [public key](http://en.wikipedia.org/wiki/Public-key_cryptography) corresponding to the local machines [private key](http://searchsecurity.techtarget.com/definition/private-key).
 4. The [SPKAC](http://en.wikipedia.org/wiki/Spkac) created with the ```<keygen>``` tag sent by the browser can be used to create [certificate signing request](http://en.wikipedia.org/wiki/Certificate_signing_request) w/ [challenge](http://en.wikipedia.org/wiki/Challenge-response_authentication) that helps to verify the public key that is sent to the server.
-5. Most implementations of authenticated web sites do not implement this feature as the keygen option is scarce in documentation and working examples of use.</li>
+
+## Certificate authenticaiton w/ node.js ##
+1. http://www.gettingcirrius.com/2012/06/securing-nodejs-and-express-with-ssl.html
+2. http://nategood.com/nodejs-ssl-client-cert-auth-api-rest
 
 ## References ##
 1. http://www.openssl.org/docs/apps/spkac.html
 2. http://lists.whatwg.org/pipermail/whatwg-whatwg.org/attachments/20080714/07ea5534/attachment.txt
 3. http://support.microsoft.com/kb/190282
-4. http://wp.netscape.com/eng/security/comm4-keygen.html
-5. http://wp.netscape.com/eng/security/ca-interface.html
-6. http://webdesign.about.com/od/htmltags/p/bltags_keygen.htm
-7. http://eskimonorth.com/~bloo/indexdot/html/tagpages/k/keygen.htm
-8. http://web.archive.org/web/20040710102131/devedge.netscape.com/library/manuals/1998/htmlguide/
-9. http://64.233.183.104/search?q=cache:TExfCslqOcwJ:www.html4newbies.com/Keygen.php
-10. http://www.di.unito.it/~rabser/ssleay/x509_netscape.html
-11. http://msdn.microsoft.com/en-us/library/cc214558.aspx
+4. http://web.archive.org/web/20040710102131/devedge.netscape.com/library/manuals/1998/htmlguide/
+5. http://msdn.microsoft.com/en-us/library/cc214558.aspx
 
 ## CLI Test case ##
 ```js
