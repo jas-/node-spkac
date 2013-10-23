@@ -10,6 +10,28 @@ The SPKAC is an acryonym for signed public key & challenge. It can be used with 
 3. It creates what is called a [SPKAC](http://en.wikipedia.org/wiki/Spkac) token which is an encoded version of a newly created [public key](http://en.wikipedia.org/wiki/Public-key_cryptography) corresponding to the local machines [private key](http://searchsecurity.techtarget.com/definition/private-key).
 4. The [SPKAC](http://en.wikipedia.org/wiki/Spkac) created with the ```<keygen>``` tag sent by the browser can be used to create [certificate signing request](http://en.wikipedia.org/wiki/Certificate_signing_request) w/ [challenge](http://en.wikipedia.org/wiki/Challenge-response_authentication) that helps to verify the public key that is sent to the server.
 
+## SPKAC format for Certificate Signing Request (CSR) ##
+Here is an example of the file format your certificate authority is expecting with
+a CSR generated from an SPKAC
+
+```
+SPKAC=MIIBXjCByDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA3L0IfUijj7+A8CPC8
+EmhcdNoe5fUAog7OrBdhn7EkxFButUp40P7+LiYiygYG1TmoI/a5EgsLU3s9twEz3
+hmgY9mYIqb/rb+SF8qlD/K6KVyUORC7Wlz1Df4L8O3DuRGzx6/+3jIW6cPBpfgH1s
+VuYS1vDBsP/gMMIxwTsKJ4P0CAwEAARYkYzBkZjFlYjctMTU0NC00MWVkLWFmN2Et
+ZDRkYjBkNDc5ZjZmMA0GCSqGSIb3DQEBBAUAA4GBALEiapUjaIPs5uEdvCP0gFK2q
+ofo+4GpeK1A43mu28lirYPAvCWsmYvKIZIT9TxvzmQIxAfxobf70aSNlSm6MJJKmv
+urAK+Bpn6ZUKQZ6A1m927LvctVSYJuUi+WVmr0fGE/OfdQ+BqSm/eQ3jnm3fBPVx1
+uwLPgjC5g4EvGMh8M
+CN=Joe Snuffy
+OU=Snake Oil, LLC
+O=Department of pricing
+L=City name
+ST=State or province
+C=United States
+E=joe.snuffy@snakeoil.com
+```
+
 ## Certificate authenticaiton w/ node.js ##
 1. http://www.gettingcirrius.com/2012/06/securing-nodejs-and-express-with-ssl.html
 2. http://nategood.com/nodejs-ssl-client-cert-auth-api-rest
